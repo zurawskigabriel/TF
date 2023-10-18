@@ -1,11 +1,4 @@
-package Interface;
-
-import Aplicacao.ProdutosDisponiveis_UC;
-import Aplicacao.SolicitarOrcamento;
-import Dominio.Orcamento;
-import Dominio.Produto;
-import Aplicacao.EfetivarOrcamento;
-import Aplicacao.GerarRelatorio;
+package com.tf.demo1.Interface;
 
 import java.util.List;
 
@@ -15,14 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tf.demo1.Aplicação.EfetivarOrcamento;
+import com.tf.demo1.Aplicação.GerarRelatorio;
+import com.tf.demo1.Aplicação.ProdutosDisponiveis_UC;
+import com.tf.demo1.Aplicação.SolicitarOrcamento;
+import com.tf.demo1.Domínio.Produto;
+
 @RestController
 @RequestMapping("/loja")
 public class Controller {
 
-	private ProdutosDisponiveis_UC produtosDisponiveis_UC;
-	private SolicitarOrcamento solicitarOrcamento;
-	private EfetivarOrcamento efetivarOrcamento;
-	private GerarRelatorio gerarRelatorio;
+	private ProdutosDisponiveis_UC produtosDisponiveis_UC = new ProdutosDisponiveis_UC();
+	private SolicitarOrcamento solicitarOrcamento = new SolicitarOrcamento();
+	private EfetivarOrcamento efetivarOrcamento = new EfetivarOrcamento();
+	private GerarRelatorio gerarRelatorio = new GerarRelatorio();
 
 	@GetMapping("/ProdutosDisponiveis")
     @CrossOrigin(origins = "*")
@@ -30,7 +29,7 @@ public class Controller {
 		return produtosDisponiveis_UC.ProdutosDisponiveis();
 	}
 
-	@GetMapping("/SolicitarOrcamento")
+	/*@GetMapping("/SolicitarOrcamento")
     @CrossOrigin(origins = "*")
 	public Orcamento SolicitarOrcamento() {
 		return solicitarOrcamento.SolicitarOrcamento();
@@ -46,7 +45,7 @@ public class Controller {
     @CrossOrigin(origins = "*")
 	public Relatorio GerarRelatorio() {
 		return gerarRelatorio.GerarRelatorio();
-	}
+	}*/
 
 
 }

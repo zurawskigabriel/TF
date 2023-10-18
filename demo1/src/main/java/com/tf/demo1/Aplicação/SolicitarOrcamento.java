@@ -1,6 +1,6 @@
-package Aplicacao;
+package com.tf.demo1.Aplicação;
 
-import Dominio.ServicoVendas;
+import com.tf.demo1.Domínio.ServicoVendas;
 
 public class SolicitarOrcamento {
 
