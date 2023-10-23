@@ -12,5 +12,29 @@ public class ItemPedido {
 		this.produto = produto;
 	}
 
+	public int getCodProduto() {
+		return codProduto;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public void setCodProduto(int codProduto) {
+		this.codProduto = codProduto;
+	}
+
 	
 }

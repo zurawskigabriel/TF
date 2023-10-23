@@ -26,4 +26,6 @@ public class ServicoEstoque implements IRepProdutos, IRepItemEstoque{
 	public List<Produto> produtosDisponiveis(){
 		return produtos;
 	}
+
+	
 }

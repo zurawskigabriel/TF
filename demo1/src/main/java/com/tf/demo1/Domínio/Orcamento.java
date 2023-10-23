@@ -28,6 +28,80 @@ public class Orcamento {
 		this.data = data;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public int getIdPedido() {
+		return idPedido;
+	}
+
+	public double getCustoPedido() {
+		return custoPedido;
+	}
+
+	public double getCustoImposto() {
+		return custoImposto;
+	}
+
+	public double getDesconto() {
+		return desconto;
+	}
+
+	public double getTotalPagar() {
+		return totalPagar;
+	}
+
+	public boolean isEfetivado() {
+		return efetivado;
+	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public void setCustoPedido(double custoPedido) {
+		this.custoPedido = custoPedido;
+	}
+
+	public void setCustoImposto(double custoImposto) {
+		this.custoImposto = custoImposto;
+	}
+
+	public void setDesconto(double desconto) {
+		this.desconto = desconto;
+	}
+
+	public void setTotalPagar(double totalPagar) {
+		this.totalPagar = totalPagar;
+	}
+
+	public void setEfetivado(boolean efetivado) {
+		this.efetivado = efetivado;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	
+
 	
 
 }
