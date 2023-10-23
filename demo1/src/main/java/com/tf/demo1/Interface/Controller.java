@@ -22,7 +22,6 @@ import com.tf.demo1.Domínio.Produto;
 public class Controller {
 
 	private ProdutosDisponiveis_UC produtosDisponiveis_UC = new ProdutosDisponiveis_UC();
-	private SolicitarOrcamento solicitarOrcamento = new SolicitarOrcamento();
 	private EfetivarOrcamento efetivarOrcamento = new EfetivarOrcamento();
 	private GerarRelatorio gerarRelatorio = new GerarRelatorio();
 
@@ -34,8 +33,9 @@ public class Controller {
 
 	@GetMapping("/SolicitarOrcamento")
     @CrossOrigin(origins = "*")
-	public Orcamento SolicitarOrcamento(@RequestBody final ItemPedido itemPedido) {
-		return solicitarOrcamento.SolicitarOrcamento(orcamento);
+	public Orcamento SolicitarOrcamento(@RequestBody final List<ItemPedido> itemPedido) {
+		SolicitarOrcamento solicitarOrcamento = new SolicitarOrcamento(itemPedido);
+		return solicitarOrcamento.Solicitar();
 	}
 
 	/*@GetMapping("/EfetivarOrcamento")

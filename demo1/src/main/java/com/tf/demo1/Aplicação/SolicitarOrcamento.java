@@ -15,7 +15,7 @@ public class SolicitarOrcamento {
 		this.itemPedido = itemPedido;
 	}
 
-	public SolicitarOrcamento() {
+	public Orcamento Solicitar() {
 		int id = 0;
 		int idPedido = 0;
 		double custoPedido = itemPedido.stream()
@@ -28,8 +28,9 @@ public class SolicitarOrcamento {
 		double custoTotal = custoPedido + custoImposto;
 		boolean efetivado = false;
 
-		
 		Orcamento orcamento = new Orcamento(id, idPedido, custoPedido, custoImposto, data, desconto, custoTotal, efetivado, itemPedido);
+
+		return orcamento; 
 	}
 
 }
