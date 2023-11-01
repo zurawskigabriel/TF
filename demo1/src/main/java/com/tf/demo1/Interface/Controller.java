@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,19 +20,16 @@ import com.tf.demo1.Domínio.Produto;
 
 @RestController
 @RequestMapping("/loja")
-public class Controller {
-
-	private ProdutosDisponiveis_UC produtosDisponiveis_UC = new ProdutosDisponiveis_UC();
-	private EfetivarOrcamento efetivarOrcamento = new EfetivarOrcamento();
-	private GerarRelatorio gerarRelatorio = new GerarRelatorio();
+public class Controller { 
 
 	@GetMapping("/ProdutosDisponiveis")
     @CrossOrigin(origins = "*")
 	public List<Produto> ProdutosDisponiveis() {
+		ProdutosDisponiveis_UC produtosDisponiveis_UC = new ProdutosDisponiveis_UC();
 		return produtosDisponiveis_UC.ProdutosDisponiveis();
 	}
 
-	@GetMapping("/SolicitarOrcamento")
+	@PostMapping("/SolicitarOrcamento")
     @CrossOrigin(origins = "*")
 	public Orcamento SolicitarOrcamento(@RequestBody final List<ItemPedido> itemPedido) {
 		SolicitarOrcamento solicitarOrcamento = new SolicitarOrcamento(itemPedido);
@@ -41,7 +39,8 @@ public class Controller {
 	@GetMapping("/EfetivarOrcamento")
     @CrossOrigin(origins = "*")
 	public boolean EfetivarOrcamento(@RequestParam int idOrcamento) {
-		return efetivarOrcamento.Efetivar(idOrcamento);
+		EfetivarOrcamento efetivarOrcamento = new EfetivarOrcamento(idOrcamento);
+		return efetivarOrcamento.Efetivar();
 	}
 	
 	/*@GetMapping("/GerarRelatorio")

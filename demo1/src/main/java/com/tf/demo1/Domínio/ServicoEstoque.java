@@ -11,7 +11,7 @@ public class ServicoEstoque implements IRepProdutos, IRepItemEstoque{
 		Produto produto2 = new Produto (2, "Banana", 3);
 		Produto produto3 =new Produto (3, "Trator", 1000.50);
 		Produto produto4 = new Produto (4, "Madeira", 5);
-		Produto produto5 = new Produto (4, "RTX 4090", 10000);
+		Produto produto5 = new Produto (5, "RTX 4090", 10000);
 
 		produtos = List.of(produto1, produto2, produto3, produto4, produto5);
 	}

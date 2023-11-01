@@ -19,7 +19,7 @@ public class SolicitarOrcamento {
 		int id = 0;
 		int idPedido = 0;
 		double custoPedido = itemPedido.stream()
-									   .mapToDouble(produto -> produto.getProduto().getPrecoUnitario() * produto.getQuantidade())
+									   .mapToDouble(item -> item.getPreco() * item.getQuantidade())
 									   .sum();
 
 		double custoImposto = 0;

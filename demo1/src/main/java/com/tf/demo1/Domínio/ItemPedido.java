@@ -4,12 +4,12 @@ public class ItemPedido {
 
 	private int codProduto;
 	private int quantidade;
-	private Produto produto;
+	private double preco;
 
-	public ItemPedido(int codProduto, int quantidade, Produto produto){
+	public ItemPedido(int codProduto, int quantidade, double preco){
 		this.codProduto = codProduto;
 		this.quantidade = quantidade;
-		this.produto = produto;
+		this.preco = preco;
 	}
 
 	public int getCodProduto() {
@@ -20,16 +20,16 @@ public class ItemPedido {
 		return quantidade;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public double getPreco() {
+		return preco;
 	}
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 
 	public void setCodProduto(int codProduto) {
