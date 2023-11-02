@@ -6,7 +6,15 @@ import com.tf.demo1.Domínio.ServicoVendas;
 public class EfetivarOrcamento {
 
 	private ServicoVendas servicoVendas;
+	private int idOrcamento;
 
-	private ServicoEstoque servicoEstoque;
+	public EfetivarOrcamento(int idOrcamento) {
+		this.idOrcamento = idOrcamento;
+	}
+
+	public boolean Efetivar() {
+		servicoVendas = ServicoVendas.getInstance();
+		return servicoVendas.efetivarOrcamento(idOrcamento);
+	}
 
 }

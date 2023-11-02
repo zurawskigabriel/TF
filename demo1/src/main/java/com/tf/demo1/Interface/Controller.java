@@ -38,13 +38,13 @@ public class Controller {
 		return solicitarOrcamento.Solicitar();
 	}
 
-	/*@GetMapping("/EfetivarOrcamento")
+	@GetMapping("/EfetivarOrcamento")
     @CrossOrigin(origins = "*")
-	public Bool EfetivarOrcamento() {
-		return efetivarOrcamento.EfetivarOrcamento();
+	public boolean EfetivarOrcamento(@RequestParam int idOrcamento) {
+		return efetivarOrcamento.Efetivar(idOrcamento);
 	}
 	
-	@GetMapping("/GerarRelatorio")
+	/*@GetMapping("/GerarRelatorio")
     @CrossOrigin(origins = "*")
 	public Relatorio GerarRelatorio() {
 		return gerarRelatorio.GerarRelatorio();
