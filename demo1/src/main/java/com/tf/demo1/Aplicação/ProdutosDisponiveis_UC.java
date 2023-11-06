@@ -2,18 +2,16 @@ package com.tf.demo1.Aplicação;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tf.demo1.Domínio.Produto;
 import com.tf.demo1.Domínio.ServicoEstoque;
 
+@Component
 public class ProdutosDisponiveis_UC {
-
+	@Autowired
 	private ServicoEstoque servicoEstoque;
-
-	public ProdutosDisponiveis_UC() {
-		this.servicoEstoque = servicoEstoque.getInstance();
-	}
 
 	public List<Produto> ProdutosDisponiveis() {
 		return servicoEstoque.produtosDisponiveis();

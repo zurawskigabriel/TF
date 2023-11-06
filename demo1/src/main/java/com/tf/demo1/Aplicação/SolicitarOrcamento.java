@@ -2,20 +2,20 @@ package com.tf.demo1.Aplicação;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.tf.demo1.Domínio.ItemPedido;
 import com.tf.demo1.Domínio.Orcamento;
 import com.tf.demo1.Domínio.ServicoVendas;
 
+@Component
 public class SolicitarOrcamento {
 
-	List<ItemPedido> itemPedido;
+	@Autowired
 	private ServicoVendas servicoVendas;
 
-	public SolicitarOrcamento(List<ItemPedido> itemPedido) {
-		this.itemPedido = itemPedido;
-	}
-
-	public Orcamento Solicitar() {
+	public Orcamento Solicitar(List<ItemPedido> itemPedido) {
 		int id = 0;
 		int idPedido = 0;
 		double custoPedido = itemPedido.stream()
@@ -28,7 +28,7 @@ public class SolicitarOrcamento {
 		double custoTotal = custoPedido + custoImposto;
 		boolean efetivado = false;
 
-		Orcamento orcamento = new Orcamento(id, idPedido, custoPedido, custoImposto, data, desconto, custoTotal, efetivado, itemPedido);
+		Orcamento orcamento = new Orcamento((long) id, idPedido, custoPedido, custoImposto, data, desconto, custoTotal, efetivado, itemPedido);
 
 		return orcamento; 
 	}

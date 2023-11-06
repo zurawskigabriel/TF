@@ -1,20 +1,19 @@
 package com.tf.demo1.Aplicação;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.tf.demo1.Domínio.Orcamento;
 import com.tf.demo1.Domínio.ServicoEstoque;
 import com.tf.demo1.Domínio.ServicoVendas;
 
+@Component
 public class EfetivarOrcamento {
-
-	private ServicoVendas servicoVendas;
+	@Autowired
+	public ServicoVendas servicoVendas;
 	private int idOrcamento;
 
-	public EfetivarOrcamento(int idOrcamento) {
-		this.idOrcamento = idOrcamento;
-	}
-
-	public boolean Efetivar() {
-		servicoVendas = ServicoVendas.getInstance();
+	public boolean Efetivar(int idOrcamento) {
 		servicoVendas.consultaOrcamentos().stream()
 										  .filter(orcamento -> orcamento.getId() == idOrcamento)
 						   				  .findFirst()

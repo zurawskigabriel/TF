@@ -1,25 +1,33 @@
 package com.tf.demo1.Domínio;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class ItemDeEstoque {
 
-	private int id;
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private int codProduto;
 	private int quantidadeAtual;
 	private int estoqueMinimo;
 	private int estoqueMaximo;
-	private Produto produto;
 
-	public ItemDeEstoque(int id, int codProduto, int quantidadeAtual,
-	int estoqueMinimo, int estoqueMaximo, Produto produto) {
+	public ItemDeEstoque(Long id, int codProduto, int quantidadeAtual,
+	int estoqueMinimo, int estoqueMaximo) {
 		this.codProduto = codProduto;
 		this.id = id;
 		this.quantidadeAtual = quantidadeAtual;
 		this.estoqueMinimo = estoqueMinimo;
 		this.estoqueMaximo = estoqueMaximo;
-		this.produto = produto;
 	}
 
-	public int getId() {
+	protected ItemDeEstoque(){}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -39,10 +47,6 @@ public class ItemDeEstoque {
 		return estoqueMaximo;
 	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
 	public void setQuantidadeAtual(int quantidadeAtual) {
 		this.quantidadeAtual = quantidadeAtual;
 	}
@@ -55,15 +59,11 @@ public class ItemDeEstoque {
 		this.estoqueMaximo = estoqueMaximo;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public void setCodProduto(int codProduto) {
 		this.codProduto = codProduto;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

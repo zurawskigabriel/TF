@@ -2,6 +2,7 @@ package com.tf.demo1.Interface;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,33 +22,36 @@ import com.tf.demo1.Domínio.Produto;
 @RestController
 @RequestMapping("/loja")
 public class Controller { 
+	@Autowired
+	ProdutosDisponiveis_UC produtosDisponiveis_UC;
+	@Autowired
+	SolicitarOrcamento solicitarOrcamento;
+	@Autowired
+	EfetivarOrcamento efetivarOrcamento;
 
 	@GetMapping("/ProdutosDisponiveis")
     @CrossOrigin(origins = "*")
 	public List<Produto> ProdutosDisponiveis() {
-		ProdutosDisponiveis_UC produtosDisponiveis_UC = new ProdutosDisponiveis_UC();
 		return produtosDisponiveis_UC.ProdutosDisponiveis();
 	}
 
 	@PostMapping("/SolicitarOrcamento")
     @CrossOrigin(origins = "*")
 	public Orcamento SolicitarOrcamento(@RequestBody final List<ItemPedido> itemPedido) {
-		SolicitarOrcamento solicitarOrcamento = new SolicitarOrcamento(itemPedido);
-		return solicitarOrcamento.Solicitar();
+		return solicitarOrcamento.Solicitar(itemPedido);
 	}
 
 	@GetMapping("/EfetivarOrcamento")
     @CrossOrigin(origins = "*")
 	public boolean EfetivarOrcamento(@RequestParam int idOrcamento) {
-		EfetivarOrcamento efetivarOrcamento = new EfetivarOrcamento(idOrcamento);
-		return efetivarOrcamento.Efetivar();
+		return efetivarOrcamento.Efetivar(idOrcamento);
 	}
+	
 	
 	/*@GetMapping("/GerarRelatorio")
     @CrossOrigin(origins = "*")
-	public Relatorio GerarRelatorio() {
-		return gerarRelatorio.GerarRelatorio();
+	public String GerarRelatorio() {
+		return "Loja";
 	}*/
-
 
 }
