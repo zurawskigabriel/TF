@@ -48,10 +48,10 @@ public class Controller {
 	}
 	
 	
-	/*@GetMapping("/GerarRelatorio")
+	@GetMapping("/GerarRelatorio")
     @CrossOrigin(origins = "*")
 	public String GerarRelatorio() {
 		return "Loja";
-	}*/
+	}
 
 }
