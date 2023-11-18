@@ -1,4 +1,5 @@
-package com.tf.demo1.Aplicação;
+package com.tf.demo1.Aplicacao;
+/*package com.tf.demo1.Aplicação;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,4 +23,4 @@ public class EfetivarOrcamento {
 		return true;
 	}
 
-}
+}*/
