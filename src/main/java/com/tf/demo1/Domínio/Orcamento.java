@@ -2,17 +2,13 @@ package com.tf.demo1.Domínio;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-
-//@Entity
+@Entity
 public class Orcamento {
 
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private int idPedido;
 	private double custoPedido;
@@ -20,9 +16,9 @@ public class Orcamento {
 	private double desconto;
 	private double totalPagar;
 	private boolean efetivado;
+	@OneToMany(mappedBy = "orcamento")
 	private List<ItemPedido> itens;
 	private String data;
-	//private ItemPedido[] itemPedido;
 
 	public Orcamento(Long id, int idPedido, double custoPedido, double custoImposto, String data,
 			double desconto, double totalPagar, boolean efetivado, List<ItemPedido> itens) {
@@ -37,7 +33,7 @@ public class Orcamento {
 		this.data = data;
 	}
 
-	//public Orcamento() {}
+	protected Orcamento() {}
 
 	public Long getId() {
 		return id;
@@ -110,9 +106,5 @@ public class Orcamento {
 	public void setData(String data) {
 		this.data = data;
 	}
-
-	
-
-	
 
 }
