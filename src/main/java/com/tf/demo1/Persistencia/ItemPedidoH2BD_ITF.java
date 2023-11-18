@@ -1,6 +1,8 @@
-package com.tf.demo1.Domínio;
+package com.tf.demo1.Persistencia;
 
 import org.springframework.data.repository.CrudRepository;
+
+import com.tf.demo1.Domínio.ItemPedido;
 
 import java.util.List;
 

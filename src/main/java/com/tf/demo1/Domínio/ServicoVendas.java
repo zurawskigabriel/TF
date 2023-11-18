@@ -5,18 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+//import com.tf.demo1.Aplicação.EfetivarOrcamento;
+import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
+
 @Component
 public class ServicoVendas {
 	private OrcamentoH2BD_ITF orcamentosRepo;
-	@Autowired
-	EfetivarOrcamento efetivar;
+	//@Autowired
+	//EfetivarOrcamento efetivar;
 
 	@Autowired
 	public ServicoVendas(OrcamentoH2BD_ITF orcamentosRepo) {
 		this.orcamentosRepo = orcamentosRepo;
 	}
 
-	public boolean efetivarVenda(int nOrcamento){
+	/*public boolean efetivarVenda(int nOrcamento){
+		List<Orcamento> orcamentos = orcamentosRepo.findAll();
 		Orcamento orcamentoEfetivado;
 		for (Orcamento i: orcamentos){
 			if (i.getId() == nOrcamento) orcamentoEfetivado = i;
@@ -46,7 +50,7 @@ public class ServicoVendas {
 
 
 		
-	}
+	}*/
 
 	public List<Orcamento> consultaOrcamentos() {
 		return orcamentosRepo.findAll();
