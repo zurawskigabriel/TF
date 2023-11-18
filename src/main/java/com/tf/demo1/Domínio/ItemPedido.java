@@ -1,26 +1,27 @@
 package com.tf.demo1.Domínio;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-//@Entity
+@Entity
 public class ItemPedido {
 
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long codProduto;
 	private int quantidade;
 	private double preco;
+	@ManyToOne
+	@JoinColumn(name = "orcamento_id") // Cannot resolve column 'orcamento_id'
+	private Orcamento orcamento; // This is the reference back to Orcamento
 
-	public ItemPedido(Long codProduto, int quantidade, double preco){
+	public ItemPedido(Long codProduto, int quantidade, double preco, Orcamento orcamento) {
 		this.codProduto = codProduto;
 		this.quantidade = quantidade;
 		this.preco = preco;
+		this.orcamento = orcamento;
 	}
 
-	//protected ItemPedido() {}
+	protected ItemPedido() {}
 
 	public Long getCodProduto() {
 		return codProduto;
@@ -46,5 +47,12 @@ public class ItemPedido {
 		this.codProduto = codProduto;
 	}
 
-	
+	public Orcamento getOrcamento() {
+		return orcamento;
+	}
+
+	public void setOrcamento(Orcamento orcamento) {
+		this.orcamento = orcamento;
+	}
+
 }

@@ -2,21 +2,18 @@ package com.tf.demo1.Domínio;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ServicoVendas {
-	public List<Orcamento> orcamentos;
-	EstoqueH2BD_ITF estoque;
+	private OrcamentoH2BD_ITF orcamentosRepo;
 	@Autowired
 	EfetivarOrcamento efetivar;
 
 	@Autowired
-	public ServicoVendas(EstoqueH2BD_ITF estoque) {
-		this.estoque = estoque;
-		Orcamento orcamento1 = new Orcamento((long) 1, 1, 100, 10, "10/10/2020", 0, 110, false, null);
-		Orcamento orcamento2 = new Orcamento((long) 2, 2, 200, 20, "10/10/2020", 0, 220, false, null);
-		orcamentos = List.of(orcamento1, orcamento2);
+	public ServicoVendas(OrcamentoH2BD_ITF orcamentosRepo) {
+		this.orcamentosRepo = orcamentosRepo;
 	}
 
 	public boolean efetivarVenda(int nOrcamento){
@@ -52,11 +49,11 @@ public class ServicoVendas {
 	}
 
 	public List<Orcamento> consultaOrcamentos() {
-		return orcamentos;
+		return orcamentosRepo.findAll();
 	}
 
 	public void armazenaOrcamento(Orcamento orcamento) {
-		orcamentos.add(orcamento);
+		orcamentosRepo.save(orcamento);
 	}	
 
 }
