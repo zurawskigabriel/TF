@@ -1,9 +1,11 @@
-package com.tf.demo1.Domínio;
+/*package com.tf.demo1.Domínio;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.tf.demo1.Aplicação.EfetivarOrcamento;
 
 @Component
 public class ServicoVendas {
@@ -17,6 +19,7 @@ public class ServicoVendas {
 	}
 
 	public boolean efetivarVenda(int nOrcamento){
+		List<Orcamento> orcamentos = orcamentosRepo.findAll();
 		Orcamento orcamentoEfetivado;
 		for (Orcamento i: orcamentos){
 			if (i.getId() == nOrcamento) orcamentoEfetivado = i;
@@ -56,4 +59,4 @@ public class ServicoVendas {
 		orcamentosRepo.save(orcamento);
 	}	
 
-}
+}*/

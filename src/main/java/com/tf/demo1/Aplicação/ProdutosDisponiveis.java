@@ -9,7 +9,7 @@ import com.tf.demo1.Domínio.Produto;
 import com.tf.demo1.Domínio.ServicoEstoque;
 
 @Component
-public class ProdutosDisponiveis_UC {
+public class ProdutosDisponiveis {
 	@Autowired
 	private ServicoEstoque servicoEstoque;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tf.demo1.Aplicação.EfetivarOrcamento;
 import com.tf.demo1.Aplicação.GerarRelatorio;
-import com.tf.demo1.Aplicação.ProdutosDisponiveis_UC;
+import com.tf.demo1.Aplicação.ProdutosDisponiveis;
 import com.tf.demo1.Aplicação.SolicitarOrcamento;
 import com.tf.demo1.Domínio.ItemPedido;
 import com.tf.demo1.Domínio.Orcamento;
@@ -23,7 +23,7 @@ import com.tf.demo1.Domínio.Produto;
 @RequestMapping("/loja")
 public class Controller { 
 	@Autowired
-	ProdutosDisponiveis_UC produtosDisponiveis_UC;
+	ProdutosDisponiveis produtosDisponiveis;
 	@Autowired
 	SolicitarOrcamento solicitarOrcamento;
 	@Autowired
@@ -32,7 +32,7 @@ public class Controller {
 	@GetMapping("/ProdutosDisponiveis")
     @CrossOrigin(origins = "*")
 	public List<Produto> ProdutosDisponiveis() {
-		return produtosDisponiveis_UC.ProdutosDisponiveis();
+		return produtosDisponiveis.ProdutosDisponiveis();
 	}
 
 	@PostMapping("/SolicitarOrcamento")

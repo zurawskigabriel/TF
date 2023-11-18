@@ -7,13 +7,15 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tf.demo1.Persistencia.ItemEstoqueH2BD_ITF;
+
 @Component
 public class ServicoEstoque {
-	private EstoqueH2BD_ITF estoqueRepo;
-	private  ProdutoH2BD_ITF produtosRepo;
+	private ItemEstoqueH2BD_ITF estoqueRepo;
+	private ProdutoH2BD_ITF produtosRepo;
 
 	@Autowired
-	private ServicoEstoque(EstoqueH2BD_ITF estoqueRepo, ProdutoH2BD_ITF produtosRepo){
+	private ServicoEstoque(ItemEstoqueH2BD_ITF estoqueRepo, ProdutoH2BD_ITF produtosRepo){
 		this.estoqueRepo = estoqueRepo;
 		this.produtosRepo = produtosRepo;
 	}
