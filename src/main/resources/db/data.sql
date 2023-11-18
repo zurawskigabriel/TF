@@ -10,7 +10,7 @@ INSERT INTO item_de_estoque(id, cod_produto, quantidade_atual, estoque_minimo, e
 INSERT INTO item_de_estoque(id, cod_produto, quantidade_atual, estoque_minimo, estoque_maximo) VALUES (4, 40, 11, 5, 50);
 INSERT INTO item_de_estoque(id, cod_produto, quantidade_atual, estoque_minimo, estoque_maximo) VALUES (5, 50, 22, 5, 50);
 
-INSERT INTO orcamento (ID, CUSTO_PEDIDO, CUSTO_IMPOSTO, DESCONTO, TOTAL_PAGAR, EFETIVADO, DATA) VALUES (1, 1, 3000.0, 300.0, 50.0, 3250.0, true, '2023-01-03');
+INSERT INTO orcamento (ID, CUSTO_PEDIDO, CUSTO_IMPOSTO, DESCONTO, TOTAL_PAGAR, EFETIVADO, DATA) VALUES (1, 3000.0, 300.0, 50.0, 3250.0, true, '2023-01-03');
 
 -- INSERT INTO orcamento (id_pedido, custo_pedido, custo_imposto, desconto, total_pagar, efetivado, data) VALUES (1, 3000.0, 300.0, 50.0, 3250.0, true, '2023-01-03');
 -- INSERT INTO orcamento (id_pedido, custo_pedido, custo_imposto, desconto, total_pagar, efetivado, data) VALUES (2, 4000.0, 400.0, 100.0, 4300.0, true, '2023-01-04');
