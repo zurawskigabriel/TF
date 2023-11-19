@@ -10,7 +10,6 @@ public class Orcamento {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	//private int idPedido;
 	private double custoPedido;
 	private double custoImposto;
 	private double desconto;
@@ -38,10 +37,6 @@ public class Orcamento {
 	public Long getId() {
 		return id;
 	}
-
-	//public int getIdPedido() {
-	//	return idPedido;
-	//}
 
 	public double getCustoPedido() {
 		return custoPedido;
@@ -74,10 +69,6 @@ public class Orcamento {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	//public void setIdPedido(int idPedido) {
-	//	this.idPedido = idPedido;
-	//}
 
 	public void setCustoPedido(double custoPedido) {
 		this.custoPedido = custoPedido;
