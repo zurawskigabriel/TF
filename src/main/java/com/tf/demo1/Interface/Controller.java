@@ -32,25 +32,26 @@ public class Controller {
 //	@Autowired
 //	EfetivarOrcamento efetivarOrcamento;
 
+	@GetMapping("/produtos-disponiveis")
     @CrossOrigin(origins = "*")
 	public List<Produto> produtosDisponiveis() {
 		return produtosDisponiveis.ProdutosDisponiveis();
 	}
 
-	/*@PostMapping("/SolicitarOrcamento")
+	@PostMapping("/solicitar-orcamento")
     @CrossOrigin(origins = "*")
 	public Orcamento solicitarOrcamento(@RequestBody final List<ItemPedido> itemPedido) {
 		return solicitarOrcamento.solicitar(itemPedido);
 	}
 
-	@GetMapping("/EfetivarOrcamento")
+//	@GetMapping("/efetivar-orcamento")
 //    @CrossOrigin(origins = "*")
 //	public boolean efetivarOrcamento(@RequestParam int idOrcamento) {
 //		return efetivarOrcamento.Efetivar(idOrcamento);
 //	}
 	
 	
-	@GetMapping("/GerarRelatorio")
+	@GetMapping("/gerar-relatorio")
     @CrossOrigin(origins = "*")
 	public String GerarRelatorio() {
 		return "Loja";
