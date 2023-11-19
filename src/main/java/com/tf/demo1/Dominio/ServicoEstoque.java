@@ -32,13 +32,13 @@ public class ServicoEstoque {
 	 */
 	public List<Produto> produtosDisponiveis() {
 		// Cria um set com os códigos dos produtos que estão em estoque
-		Set<Integer> codigosEmEstoque = estoqueRepository.findAll().stream()
+		Set<Long> codigosEmEstoque = estoqueRepository.findAll().stream()
 				.map(ItemDeEstoque::getCodProduto)
 				.collect(Collectors.toSet());
 
-		// Retorna todos os produtos que estão em estoque
+		// Verifica os produtos cujo código esta no set do estoque e retorna o resultado.
 		return produtosRepository.findAll().stream()
 				.filter(p -> codigosEmEstoque.contains(p.getCodigo()))
-				.collect(Collectors.toList());
+				.toList();
 	}
 }
