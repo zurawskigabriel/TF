@@ -1,4 +1,4 @@
-package com.tf.demo1.Domínio;
+package com.tf.demo1.Dominio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

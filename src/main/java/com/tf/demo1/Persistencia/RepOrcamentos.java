@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tf.demo1.Domínio.IRepOrcamentos;
-import com.tf.demo1.Domínio.Orcamento;
+import com.tf.demo1.Dominio.IRepOrcamentos;
+import com.tf.demo1.Dominio.Orcamento;
 
 public class RepOrcamentos implements IRepOrcamentos {
     @Autowired

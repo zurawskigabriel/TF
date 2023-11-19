@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tf.demo1.Domínio.IRepItemEstoque;
-import com.tf.demo1.Domínio.ItemDeEstoque;
+import com.tf.demo1.Dominio.IRepItemEstoque;
+import com.tf.demo1.Dominio.ItemDeEstoque;
 
 
 public class RepItemEstoque implements IRepItemEstoque{

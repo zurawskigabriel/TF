@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tf.demo1.Domínio.Orcamento;
-import com.tf.demo1.Domínio.ServicoVendas;
+import com.tf.demo1.Dominio.Orcamento;
+import com.tf.demo1.Dominio.ServicoVendas;
 
 public class ServicoRelatorio {
 
