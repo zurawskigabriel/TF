@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tf.demo1.Domínio.ItemPedido;
-import com.tf.demo1.Domínio.Orcamento;
-import com.tf.demo1.Domínio.ServicoVendas;
+import com.tf.demo1.Dominio.ItemPedido;
+import com.tf.demo1.Dominio.Orcamento;
+import com.tf.demo1.Dominio.ServicoVendas;
 
 @Component
 public class SolicitarOrcamento {

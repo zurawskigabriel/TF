@@ -2,7 +2,7 @@ package com.tf.demo1.Persistencia;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.tf.demo1.Domínio.ItemPedido;
+import com.tf.demo1.Dominio.ItemPedido;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.tf.demo1.Persistencia;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.tf.demo1.Domínio.Orcamento;
+import com.tf.demo1.Dominio.Orcamento;
 
 import java.util.List;
 

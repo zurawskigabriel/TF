@@ -1,4 +1,4 @@
-package com.tf.demo1.Domínio;
+package com.tf.demo1.Dominio;
 
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;

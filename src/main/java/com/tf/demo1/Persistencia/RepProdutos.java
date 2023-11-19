@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tf.demo1.Domínio.IRepProduto;
-import com.tf.demo1.Domínio.Produto;
-import com.tf.demo1.Domínio.ProdutoH2BD_ITF;
+import com.tf.demo1.Dominio.IRepProduto;
+import com.tf.demo1.Dominio.Produto;
+import com.tf.demo1.Dominio.ProdutoH2BD_ITF;
 
 public class RepProdutos implements IRepProduto{
     @Autowired

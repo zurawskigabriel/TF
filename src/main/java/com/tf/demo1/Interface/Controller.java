@@ -9,15 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tf.demo1.Aplicacao.GerarRelatorio;
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
 import com.tf.demo1.Aplicacao.SolicitarOrcamento;
-import com.tf.demo1.Domínio.ItemPedido;
-import com.tf.demo1.Domínio.Orcamento;
-import com.tf.demo1.Domínio.Produto;
+import com.tf.demo1.Dominio.ItemPedido;
+import com.tf.demo1.Dominio.Orcamento;
+import com.tf.demo1.Dominio.Produto;
 
 @RestController
 @RequestMapping("/loja")
