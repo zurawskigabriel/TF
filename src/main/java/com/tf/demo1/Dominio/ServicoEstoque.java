@@ -41,4 +41,19 @@ public class ServicoEstoque {
 				.filter(p -> codigosEmEstoque.contains(p.getCodigo()))
 				.toList();
 	}
+
+	/*
+	 * Retorna o próximo id disponível para item de estoque.
+	 */
+//	@Transactional
+//	public Long getNextItemPedidoId() {
+//		// Busca o item com maior id...
+//		ItemDeEstoque ultimoItem = estoqueRepository.findTopByOrderByIdDesc();
+//
+//		if (ultimoItem == null) { // Se não encontrou nenhum item, ele recebe o id 0...
+//			return 0L;
+//		} else { // Se encontrou o maior id, retorna maior + 1...
+//			return ultimoItem.getId() + 1;
+//		}
+//	}
 }

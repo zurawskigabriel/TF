@@ -25,9 +25,8 @@ public class SolicitarOrcamento {
 	@Autowired
 	private CalculaDescontos calculaDescontos;
 
-	public Orcamento solicitar(List<ItemPedido> itemPedido) {
-		int id = 0;
-		String nomeCliente = "Siclano";
+	public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
+		Long idOrcamento = servicoVendas.getNextOrcamentoId();
 		double custoPedido = itemPedido.stream()
 									   .mapToDouble(item -> item.getPreco() * item.getQuantidade())
 									   .sum();
@@ -42,7 +41,7 @@ public class SolicitarOrcamento {
 		double custoTotal = custoPedido + impostoTotal - descontoTotal;
 		boolean efetivado = false;
 
-		Orcamento orcamento = new Orcamento((long) id, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
+		Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
 
         // Salva o orçamento no banco de dados
 		return orcamento; 
