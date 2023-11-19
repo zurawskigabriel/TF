@@ -2,38 +2,37 @@ package com.tf.demo1.Domínio;
 
 import java.util.List;
 
+import com.tf.demo1.Persistencia.ItemEstoqueH2BD_ITF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//import com.tf.demo1.Aplicação.EfetivarOrcamento;
 import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
 
 @Component
 public class ServicoVendas {
-	private OrcamentoH2BD_ITF orcamentosRepo;
-	//@Autowired
-	//EfetivarOrcamento efetivar;
+	private OrcamentoH2BD_ITF orcamentosRepository;
+	private ItemEstoqueH2BD_ITF estoqueRepository;
 
 	@Autowired
-	public ServicoVendas(OrcamentoH2BD_ITF orcamentosRepo) {
-		this.orcamentosRepo = orcamentosRepo;
+	public ServicoVendas(OrcamentoH2BD_ITF orcamentosRepository, ItemEstoqueH2BD_ITF estoqueRepository) {
+		this.orcamentosRepository = orcamentosRepository;
+		this.estoqueRepository = estoqueRepository;
 	}
 
-	/*public boolean efetivarVenda(int nOrcamento){
-		List<Orcamento> orcamentos = orcamentosRepo.findAll();
-		Orcamento orcamentoEfetivado;
-		for (Orcamento i: orcamentos){
-			if (i.getId() == nOrcamento) orcamentoEfetivado = i;
+	public boolean efetivarVenda(int nOrcamento){
+		Orcamento orcamentoEfetivado = orcamentosRepository.findByid((long) nOrcamento);
+
+		//Verifica se o orçamento existe
+		if (orcamentoEfetivado == null){
+			return false;
 		}
 
-		if (orcamentoEfetivado == null)
-		return false;
-
+		// Verifica se o orçamento já foi efetivado
 		List<ItemPedido>itensOrcamento = orcamentoEfetivado.getItens();
 		for (ItemPedido i: itensOrcamento){
-			if (estoque.findByid(i.getCodigo()) != null){
-				ItemDeEstoque produtoAtual = estoque.findByid(i.getCodigo());
-				if (produtoAtual.getQuantidadeAtual < i.getQuantidade){
+			if (estoqueRepository.findByid(i.getCodProduto()) != null){
+				ItemDeEstoque produtoAtual = estoqueRepository.findByid(i.getCodProduto());
+				if (produtoAtual.getQuantidadeAtual() < i.getQuantidade()){
 					return false;
 				}
 			}
@@ -41,23 +40,29 @@ public class ServicoVendas {
 
 		//Baixa no estoque
 		for (ItemPedido i: itensOrcamento){
-			ItemDeEstoque produtoAtual = estoque.findByid(i.getCodigo());
-			produtoAtual.setQuantidadeAtual(produtoAtual.getQuantidadeAtual() - i.getQuantidade);
+			ItemDeEstoque itemEstoque = estoqueRepository.findByid(i.getCodProduto());
+			itemEstoque.setQuantidadeAtual(itemEstoque.getQuantidadeAtual() - i.getQuantidade());
+			
 			//Salva as alterações no banco de dados
+			estoqueRepository.save(itemEstoque);
 		}
 
-		efetivar.EfetivarOrcamento(nOrcamento);
+		// Efetiva o orçamento
+		orcamentoEfetivado.setEfetivado(true);
 
+		// Salva as alterações no banco de dados
+		orcamentosRepository.save(orcamentoEfetivado);
 
-		
-	}*/
+		// Retorna true para indicar que a venda foi efetivada
+		return true;
+	}
 
 	public List<Orcamento> consultaOrcamentos() {
-		return orcamentosRepo.findAll();
+		return orcamentosRepository.findAll();
 	}
 
 	public void armazenaOrcamento(Orcamento orcamento) {
-		orcamentosRepo.save(orcamento);
+		orcamentosRepository.save(orcamento);
 	}	
 
 }
