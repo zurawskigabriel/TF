@@ -7,6 +7,8 @@ public class ItemPedido {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+
 	private Long codProduto;
 	private int quantidade;
 	private double preco;
@@ -14,7 +16,8 @@ public class ItemPedido {
 	@JoinColumn(name = "orcamento_id") // Cannot resolve column 'orcamento_id'
 	private Orcamento orcamento; // This is the reference back to Orcamento
 
-	public ItemPedido(Long codProduto, int quantidade, double preco, Orcamento orcamento) {
+	public ItemPedido(Long id, Long codProduto, int quantidade, double preco, Orcamento orcamento) {
+		this.id = id;
 		this.codProduto = codProduto;
 		this.quantidade = quantidade;
 		this.preco = preco;
@@ -23,8 +26,16 @@ public class ItemPedido {
 
 	protected ItemPedido() {}
 
+	public Long getId() {
+		return id;
+	}
+
 	public Long getCodProduto() {
 		return codProduto;
+	}
+
+	public void setCodProduto(int codProduto) {
+		this.codProduto = (long) codProduto;
 	}
 
 	public int getQuantidade() {
