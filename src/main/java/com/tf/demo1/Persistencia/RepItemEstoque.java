@@ -6,20 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tf.demo1.Dominio.IRepItemEstoque;
 import com.tf.demo1.Dominio.ItemDeEstoque;
+import org.springframework.stereotype.Repository;
 
-
-public class RepItemEstoque implements IRepItemEstoque{
+@Repository
+public class RepItemEstoque implements IRepItemEstoque {
     @Autowired
-    ItemEstoqueH2BD_ITF itemEstoques;
+    ItemEstoqueH2BD_ITF itemEstoqueH2BD;
 
     @Override
     public ItemDeEstoque findByid(Long id) {
-        return itemEstoques.findByid(id);
+        return itemEstoqueH2BD.findByid(id);
     }
 
     @Override
     public List<ItemDeEstoque> findAll() {
-        return itemEstoques.findAll();
+        return itemEstoqueH2BD.findAll();
+    }
+
+    @Override
+    public ItemDeEstoque findTopByOrderByIdDesc() {
+        return itemEstoqueH2BD.findTopByOrderByIdDesc();
+    }
+
+    @Override
+    public ItemDeEstoque save(ItemDeEstoque item) {
+        return itemEstoqueH2BD.save(item);
     }
 
 }
