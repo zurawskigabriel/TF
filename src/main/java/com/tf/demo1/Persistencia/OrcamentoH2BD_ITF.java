@@ -9,5 +9,6 @@ import java.util.List;
 public interface OrcamentoH2BD_ITF extends CrudRepository<Orcamento, Long> {
     Orcamento findByid(Long id);
     List<Orcamento> findAll();
-    //Orcamento save(Orcamento o);
+    Orcamento save(Orcamento o);
+    Orcamento findTopByOrderByIdDesc();
 }

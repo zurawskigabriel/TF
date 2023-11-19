@@ -4,12 +4,7 @@ import java.util.List;
 
 import com.tf.demo1.Aplicacao.ListarTodosProdutos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
 import com.tf.demo1.Aplicacao.SolicitarOrcamento;
@@ -38,8 +33,8 @@ public class Controller {
 
 	@PostMapping("/solicitar-orcamento")
     @CrossOrigin(origins = "*")
-	public Orcamento solicitarOrcamento(@RequestBody final List<ItemPedido> itemPedido) {
-		return solicitarOrcamento.solicitar(itemPedido);
+	public Orcamento solicitarOrcamento(@RequestParam final String nomeCliente, @RequestBody final List<ItemPedido> itemPedido) {
+		return solicitarOrcamento.solicitar(nomeCliente, itemPedido);
 	}
 
 //	@GetMapping("/efetivar-orcamento")

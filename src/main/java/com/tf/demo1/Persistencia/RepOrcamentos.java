@@ -2,6 +2,7 @@ package com.tf.demo1.Persistencia;
 
 import java.util.List;
 
+import com.tf.demo1.Dominio.ItemDeEstoque;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tf.demo1.Dominio.IRepOrcamentos;
@@ -26,6 +27,11 @@ public class RepOrcamentos implements IRepOrcamentos {
     @Override
     public Orcamento save(Orcamento orcamento) {
         return orcamentoH2BD.save(orcamento);
+    }
+
+    @Override
+    public Orcamento findTopByOrderByIdDesc() {
+        return orcamentoH2BD.findTopByOrderByIdDesc();
     }
 
 }
