@@ -2,19 +2,18 @@ package com.tf.demo1.Dominio;
 
 import java.util.List;
 
-import com.tf.demo1.Persistencia.ItemEstoqueH2BD_ITF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class ServicoVendas {
-	private OrcamentoH2BD_ITF orcamentosRepository;
-	private ItemEstoqueH2BD_ITF estoqueRepository;
+	private IRepOrcamentos orcamentosRepository;
+	private IRepItemEstoque estoqueRepository;
 
 	@Autowired
-	public ServicoVendas(OrcamentoH2BD_ITF orcamentosRepository, ItemEstoqueH2BD_ITF estoqueRepository) {
+	public ServicoVendas(IRepOrcamentos orcamentosRepository, IRepItemEstoque estoqueRepository) {
 		this.orcamentosRepository = orcamentosRepository;
 		this.estoqueRepository = estoqueRepository;
 	}
