@@ -2,21 +2,20 @@ package com.tf.demo1.Aplicacao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ServicoRelatorio {
 
-    public class dadosRelatorio{
+    public class DadosRelatorio {
         String dataOrcamento;
         double valorBruto;
         double valorImposto;
         double desconto;
         double valorPago;
 
-        public dadosRelatorio(String aDataOrcamento, double oValorBruto, double oValorImposto, double oDesconto, double oValorPago){
+        public DadosRelatorio(String aDataOrcamento, double oValorBruto, double oValorImposto, double oDesconto, double oValorPago){
             dataOrcamento = aDataOrcamento;
             valorBruto = oValorBruto;
             valorImposto = oValorImposto;
@@ -25,6 +24,7 @@ public class ServicoRelatorio {
         }
 
     }
+
     private ServicoVendas vendas;
     public List<Orcamento> orcamentos;
     List<Orcamento> efetivados;
@@ -45,10 +45,10 @@ public class ServicoRelatorio {
         }
     }
 
-    public List<dadosRelatorio> orcamentosDados(List<Orcamento> orcamentosEfetivados){
-        List<dadosRelatorio> dadosRelatorios = new ArrayList<dadosRelatorio>();
+    public List<DadosRelatorio> orcamentosDados(List<Orcamento> orcamentosEfetivados){
+        List<DadosRelatorio> dadosRelatorios = new ArrayList<DadosRelatorio>();
         for (Orcamento i: orcamentosEfetivados){
-            dadosRelatorios.add(new dadosRelatorio(i.getData(), i.getCustoPedido(), i.getCustoPedido(), i.getDesconto(), i.getTotalPagar()));
+            dadosRelatorios.add(new DadosRelatorio(i.getData(), i.getCustoPedido(), i.getCustoPedido(), i.getDesconto(), i.getTotalPagar()));
         }
 
         return dadosRelatorios;
