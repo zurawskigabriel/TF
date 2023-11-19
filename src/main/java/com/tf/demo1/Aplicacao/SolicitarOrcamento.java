@@ -18,7 +18,7 @@ public class SolicitarOrcamento {
 	private ServicoVendas servicoVendas;
 
 	public Orcamento solicitar(List<ItemPedido> itemPedido) {
-		int id = 0;
+		Long id = servicoVendas.getNextId();
 		int idPedido = 0;
 		double custoPedido = itemPedido.stream()
 									   .mapToDouble(item -> item.getPreco() * item.getQuantidade())

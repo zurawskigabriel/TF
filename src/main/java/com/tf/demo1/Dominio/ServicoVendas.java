@@ -62,6 +62,22 @@ public class ServicoVendas {
 
 	public void armazenaOrcamento(Orcamento orcamento) {
 		orcamentosRepository.save(orcamento);
-	}	
+	}
+
+
+	/*
+	 * Retorna o próximo id disponível para item de estoque.
+	 */
+	@Transactional
+	public Long getNextId() {
+		// Busca o item com maior id...
+		ItemDeEstoque ultimoItem = estoqueRepository.findTopByOrderByIdDesc();
+
+		if (ultimoItem == null) { // Se não encontrou nenhum item, ele recebe o id 0...
+			return 0L;
+		} else { // Se encontrou o maior id, retorna maior + 1...
+			return ultimoItem.getId() + 1;
+		}
+	}
 
 }
