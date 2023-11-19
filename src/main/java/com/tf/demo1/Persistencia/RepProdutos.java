@@ -6,20 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tf.demo1.Dominio.IRepProduto;
 import com.tf.demo1.Dominio.Produto;
-import com.tf.demo1.Dominio.ProdutoH2BD_ITF;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RepProdutos implements IRepProduto{
     @Autowired
-    ProdutoH2BD_ITF produtos;
+    ProdutoH2BD_ITF produtoH2BD;
 
     @Override
     public Produto findBycodigo(Long codigo) {
-        return produtos.findBycodigo(codigo);
+        return produtoH2BD.findBycodigo(codigo);
     }
 
     @Override
     public List<Produto> findAll() {
-        return produtos.findAll();
+        return produtoH2BD.findAll();
     }
 
 }

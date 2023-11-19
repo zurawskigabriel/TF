@@ -8,7 +8,6 @@ public class ItemPedido {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-
 	private Long codProduto;
 	private int quantidade;
 	private double preco;

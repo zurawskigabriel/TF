@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.tf.demo1.Persistencia.ItemEstoqueH2BD_ITF;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class ServicoEstoque {
-	private ItemEstoqueH2BD_ITF estoqueRepository;
-	private ProdutoH2BD_ITF produtosRepository;
+	private IRepItemEstoque estoqueRepository;
+	private IRepProduto produtosRepository;
 
 	@Autowired
-	private ServicoEstoque(ItemEstoqueH2BD_ITF estoqueRepository, ProdutoH2BD_ITF produtosRepository){
+	private ServicoEstoque(IRepItemEstoque estoqueRepository, IRepProduto produtosRepository){
 		this.estoqueRepository = estoqueRepository;
 		this.produtosRepository = produtosRepository;
 	}
@@ -32,13 +32,13 @@ public class ServicoEstoque {
 	 */
 	public List<Produto> produtosDisponiveis() {
 		// Cria um set com os códigos dos produtos que estão em estoque
-		Set<Integer> codigosEmEstoque = estoqueRepository.findAll().stream()
+		Set<Long> codigosEmEstoque = estoqueRepository.findAll().stream()
 				.map(ItemDeEstoque::getCodProduto)
 				.collect(Collectors.toSet());
 
-		// Retorna todos os produtos que estão em estoque
+		// Verifica os produtos cujo código esta no set do estoque e retorna o resultado.
 		return produtosRepository.findAll().stream()
 				.filter(p -> codigosEmEstoque.contains(p.getCodigo()))
-				.collect(Collectors.toList());
+				.toList();
 	}
 }

@@ -11,12 +11,12 @@ public class ItemDeEstoque {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private int codProduto;
+	private Long codProduto;
 	private int quantidadeAtual;
 	private int estoqueMinimo;
 	private int estoqueMaximo;
 
-	public ItemDeEstoque(Long id, int codProduto, int quantidadeAtual,
+	public ItemDeEstoque(Long id, Long codProduto, int quantidadeAtual,
 	int estoqueMinimo, int estoqueMaximo) {
 		this.codProduto = codProduto;
 		this.id = id;
@@ -31,7 +31,7 @@ public class ItemDeEstoque {
 		return id;
 	}
 
-	public int getCodProduto() {
+	public Long getCodProduto() {
 		return codProduto;
 	}
 
@@ -59,7 +59,7 @@ public class ItemDeEstoque {
 		this.estoqueMaximo = estoqueMaximo;
 	}
 
-	public void setCodProduto(int codProduto) {
+	public void setCodProduto(Long codProduto) {
 		this.codProduto = codProduto;
 	}
 
