@@ -10,31 +10,39 @@ import org.springframework.stereotype.Component;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
+import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
+import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
+
+
 
 @Component
 public class SolicitarOrcamento {
 
 	@Autowired
 	private ServicoVendas servicoVendas;
+	@Autowired
+	private CalculaImpostos calculaImpostos;
+	@Autowired
+	private CalculaDescontos calculaDescontos;
 
 	public Orcamento solicitar(List<ItemPedido> itemPedido) {
-		Long id = servicoVendas.getNextId();
-		int idPedido = 0;
+		int id = 0;
+		String nomeCliente = "Siclano";
 		double custoPedido = itemPedido.stream()
 									   .mapToDouble(item -> item.getPreco() * item.getQuantidade())
 									   .sum();
 
-		double custoImposto = 0;
-		double desconto = 0;
+		double impostoTotal = calculaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
+		double descontoTotal = calculaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
 
 		// Formatar a data de hoje no formato desejado
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dataHoje = LocalDate.now().format(formatter);
 
-		double custoTotal = custoPedido + custoImposto;
+		double custoTotal = custoPedido + impostoTotal - descontoTotal;
 		boolean efetivado = false;
 
-		Orcamento orcamento = new Orcamento((long) id, idPedido, custoPedido, custoImposto, dataHoje, desconto, custoTotal, efetivado, itemPedido);
+		Orcamento orcamento = new Orcamento((long) id, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
 
         // Salva o orçamento no banco de dados
 		return orcamento; 
