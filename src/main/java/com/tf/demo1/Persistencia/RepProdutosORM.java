@@ -22,5 +22,7 @@ public class RepProdutosORM implements IRepProduto{
     public List<Produto> findAll() {
         return produtoH2BD.findAll();
     }
-
+    public List<Produto> findProdutosDisponiveis() {
+        return produtoH2BD.findProdutosDisponiveis();
+    }
 }

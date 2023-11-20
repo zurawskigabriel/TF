@@ -6,5 +6,4 @@ public interface IRepOrcamentos {
     Orcamento findByid(Long id);
     List<Orcamento> findAll();
     Orcamento save(Orcamento orcamento);
-    Orcamento findTopByOrderByIdDesc();
 }

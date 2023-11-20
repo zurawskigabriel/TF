@@ -24,11 +24,6 @@ public class RepItemEstoqueORM implements IRepItemEstoque {
     }
 
     @Override
-    public ItemDeEstoque findTopByOrderByIdDesc() {
-        return itemEstoqueH2BD.findTopByOrderByIdDesc();
-    }
-
-    @Override
     public ItemDeEstoque save(ItemDeEstoque item) {
         return itemEstoqueH2BD.save(item);
     }

@@ -45,8 +45,7 @@ public class SolicitarOrcamento {
         orcamento.setData(dataHoje);
         orcamento.setEfetivado(efetivado);
 
-        // TODO: Concertar o erro de primary key violation
-        // servicoVendas.salvarOrcamento(orcamento);
+        servicoVendas.salvarOrcamento(orcamento);
 
         return orcamento;
     }

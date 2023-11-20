@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import org.springframework.transaction.annotation.Transactional;
-
 @Component
 public class ServicoVendas {
 	private IRepOrcamentos orcamentosRepository;
@@ -62,21 +60,5 @@ public class ServicoVendas {
 
 	public void salvarOrcamento(Orcamento orcamento) {
 		orcamentosRepository.save(orcamento);
-	}
-
-
-	/*
-	 * Retorna o próximo id disponível para item de estoque.
-	 */
-	@Transactional
-	public Long getNextItemPedidoId() {
-		// Busca o item com maior id...
-		ItemDeEstoque ultimoItem = estoqueRepository.findTopByOrderByIdDesc();
-
-		if (ultimoItem == null) { // Se não encontrou nenhum item, ele recebe o id 0...
-			return 0L;
-		} else { // Se encontrou o maior id, retorna maior + 1...
-			return ultimoItem.getId() + 1;
-		}
 	}
 }

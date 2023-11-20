@@ -28,9 +28,4 @@ public class RepOrcamentosORM implements IRepOrcamentos {
         return orcamentoH2BD.save(orcamento);
     }
 
-    @Override
-    public Orcamento findTopByOrderByIdDesc() {
-        return orcamentoH2BD.findTopByOrderByIdDesc();
-    }
-
 }
