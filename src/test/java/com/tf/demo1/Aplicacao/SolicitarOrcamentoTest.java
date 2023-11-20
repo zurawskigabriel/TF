@@ -35,7 +35,7 @@ public class SolicitarOrcamentoTest {
     private SolicitarOrcamento solicitarOrcamento;
 
     @Test
-    public void whenSolicitarOrcamento_thenReturnsOrcamento() {
+    public void whenSolicitarOrcamento_thenReturnOrcamento() {
         // Given
         String nomeCliente = "John Appleseed";
 

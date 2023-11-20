@@ -29,22 +29,6 @@ public class ServicoRelatorioTest {
         MockitoAnnotations.openMocks(this);
     }
 
-//    @Test
-//    void whenFiltraOrcamentosEfetivados_thenReturnOrcamentosFiltrados() {
-//        // Given
-//        Orcamento orcamento1 = new Orcamento();
-//        orcamento1.setEfetivado(true);
-//        Orcamento orcamento2 = new Orcamento();
-//        orcamento2.setEfetivado(false);
-//        when(servicoVendas.consultaOrcamentos()).thenReturn(Arrays.asList(orcamento1, orcamento2));
-//
-//        // When
-//        List<Orcamento> efetivados = servicoRelatorio.filtraOrcamentosEfetivados();
-//
-//        // Then
-//        assertEquals(1, efetivados.size());
-//    }
-
     @Test
     void whenGerarDadosRelatorio_thenReturnDadosRelatorio() {
         // Given
