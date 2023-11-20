@@ -1,111 +1,29 @@
 package com.tf.demo1.Dominio;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.List;
 
-import jakarta.persistence.*;
-
 @Entity
+@Getter
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Orcamento {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	private String nomeCliente;
-	private double custoPedido;
-	private double custoImposto;
-	private double desconto;
-	private double totalPagar;
-	private boolean efetivado;
-	@OneToMany(mappedBy = "orcamento")
-	private List<ItemPedido> itens;
-	private String data;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	public Orcamento(Long id, String nomeCliente, double custoPedido, double custoImposto, String data,
-			double desconto, double totalPagar, boolean efetivado, List<ItemPedido> itens) {
-		this.id = id;
-		this.nomeCliente = nomeCliente;
-		//this.idPedido = idPedido;
-		this.custoPedido = custoPedido;
-		this.custoImposto = custoImposto;
-		this.desconto = desconto;
-		this.totalPagar = totalPagar;
-		this.efetivado = efetivado;
-		this.itens = itens;
-		this.data = data;
-	}
+    @Setter private String nomeCliente;
+    @Setter private double custoPedido;
+    @Setter private double custoImposto;
+    @Setter private double desconto;
+    @Setter private double totalPagar;
+    @Setter private boolean efetivado;
 
-	protected Orcamento() {}
+    @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter private List<ItemPedido> itens;
 
-	public Long getId() {
-		return id;
-	}
-
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
-
-	public double getCustoPedido() {
-		return custoPedido;
-	}
-
-	public double getCustoImposto() {
-		return custoImposto;
-	}
-
-	public double getDesconto() {
-		return desconto;
-	}
-
-	public double getTotalPagar() {
-		return totalPagar;
-	}
-
-	public boolean isEfetivado() {
-		return efetivado;
-	}
-
-	public List<ItemPedido> getItens() {
-		return itens;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
-	}
-
-	public void setCustoPedido(double custoPedido) {
-		this.custoPedido = custoPedido;
-	}
-
-	public void setCustoImposto(double custoImposto) {
-		this.custoImposto = custoImposto;
-	}
-
-	public void setDesconto(double desconto) {
-		this.desconto = desconto;
-	}
-
-	public void setTotalPagar(double totalPagar) {
-		this.totalPagar = totalPagar;
-	}
-
-	public void setEfetivado(boolean efetivado) {
-		this.efetivado = efetivado;
-	}
-
-	public void setItens(List<ItemPedido> itens) {
-		this.itens = itens;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
+    @Setter private String data;
 }

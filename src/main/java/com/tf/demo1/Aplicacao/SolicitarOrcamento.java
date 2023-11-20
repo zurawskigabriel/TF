@@ -27,7 +27,6 @@ public class SolicitarOrcamento {
     public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
         validarEntrada(nomeCliente, itemPedido);
 
-        long idOrcamento = servicoVendas.getNextOrcamentoId();
         double custoPedido = calcularCustoPedido(itemPedido);
         double impostoTotal = calculaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
         double descontoTotal = calculaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
@@ -36,10 +35,18 @@ public class SolicitarOrcamento {
         double custoTotal = custoPedido + impostoTotal - descontoTotal;
         boolean efetivado = false;
 
-        Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
+        Orcamento orcamento = new Orcamento();
+        orcamento.setNomeCliente(nomeCliente);
+        orcamento.setCustoPedido(custoPedido);
+        orcamento.setCustoImposto(impostoTotal);
+        orcamento.setDesconto(descontoTotal);
+        orcamento.setTotalPagar(custoTotal);
+        orcamento.setItens(itemPedido);
+        orcamento.setData(dataHoje);
+        orcamento.setEfetivado(efetivado);
 
-        // TODO: Implementar a persistência do orçamento no banco de dados
-         servicoVendas.salvarOrcamento(orcamento);
+        // TODO: Concertar o erro de primary key violation
+        // servicoVendas.salvarOrcamento(orcamento);
 
         return orcamento;
     }

@@ -48,7 +48,6 @@ public class SolicitarOrcamentoTest {
         double descontoTotal = 1.0;
         Long idOrcamento = 1L;
 
-        given(servicoVendas.getNextOrcamentoId()).willReturn(idOrcamento);
         given(calculaImpostos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(impostoTotal);
         given(calculaDescontos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(descontoTotal);
 
@@ -56,7 +55,6 @@ public class SolicitarOrcamentoTest {
         Orcamento orcamento = solicitarOrcamento.solicitar(nomeCliente, itensPedido);
 
         // Then
-        assertThat(orcamento.getId()).isEqualTo(idOrcamento);
         assertThat(orcamento.getCustoPedido()).isEqualTo(custoPedido);
         assertThat(orcamento.getCustoImposto()).isEqualTo(impostoTotal);
         assertThat(orcamento.getDesconto()).isEqualTo(descontoTotal);
