@@ -10,7 +10,6 @@ import com.tf.demo1.Dominio.IRepOrcamentos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.Produto;
-import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +23,6 @@ public class Controller {
 	SolicitarOrcamento solicitarOrcamento;
 	@Autowired
 	ListarTodosProdutos listarTodosProdutos;
-	@Autowired
-	OrcamentoH2BD_ITF repOrcamento;
 
 //	@Autowired
 //	EfetivarOrcamento efetivarOrcamento;
@@ -42,23 +39,41 @@ public class Controller {
 		return solicitarOrcamento.solicitar(nomeCliente, itemPedido);
 	}
 
-	@GetMapping("/orcamento-por-cliente")
-    @CrossOrigin(origins = "*")
-	public List<Orcamento> orcamentoPorCliente(@RequestParam(value = "nomeCliente") String nomeCliente) {
-		return repOrcamento.findBynomeCliente(nomeCliente);
-	}
-
 //	@GetMapping("/efetivar-orcamento")
 //    @CrossOrigin(origins = "*")
 //	public boolean efetivarOrcamento(@RequestParam int idOrcamento) {
 //		return efetivarOrcamento.Efetivar(idOrcamento);
 //	}
 	
-	
-	@GetMapping("/gerar-relatorio")
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///// Endpoints de Testes
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/*
+	 * Este endpoint diz se o sistema está no ar.
+	 */
+	@GetMapping("/taVivoAí")
     @CrossOrigin(origins = "*")
 	public String GerarRelatorio() {
-		return "Loja";
+		return "Pai ta on (～￣▽￣)～";
+	}
+
+	/*
+	 * Este endpoint retorna todos os orcamentos.
+	 */
+	@GetMapping("/orcamentos")
+    @CrossOrigin(origins = "*")
+	public List<Orcamento> orcamentos() {
+		return repOrcamento.findAll();
+	}
+
+	/*
+	 * Este endpoint retorna todos os orcamento de um cliente especifico.
+	 */
+	@GetMapping("/orcamento-por-cliente")
+    @CrossOrigin(origins = "*")
+	public List<Orcamento> orcamentoPorCliente(@RequestParam(value = "nomeCliente") String nomeCliente) {
+		return repOrcamento.findBynomeCliente(nomeCliente);
 	}
 
 	/*
