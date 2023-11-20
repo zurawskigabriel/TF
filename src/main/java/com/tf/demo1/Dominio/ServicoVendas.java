@@ -61,7 +61,7 @@ public class ServicoVendas {
 	}
 
 	public void apagaOrcamento(Long id){
-		orcamentosRepository.deleteById(id);
+		orcamentosRepository.deleteByid(id);
 	}
 
 	public void armazenaOrcamento(Orcamento orcamento) {

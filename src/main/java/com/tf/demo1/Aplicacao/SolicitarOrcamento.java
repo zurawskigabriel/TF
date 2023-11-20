@@ -14,9 +14,6 @@ import com.tf.demo1.Dominio.Descontos.GerenciaDescontos;
 import com.tf.demo1.Dominio.Impostos.GerenciaImpostos;
 
 
-
-
-
 @Component
 public class SolicitarOrcamento {
 

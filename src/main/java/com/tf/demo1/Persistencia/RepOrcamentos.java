@@ -39,8 +39,8 @@ public class RepOrcamentos implements IRepOrcamentos {
     }
 
     @Override
-    public void deleteById(Long id){
-        orcamentoH2BD.deleteById(id);
+    public void deleteByid(Long id){
+        orcamentoH2BD.deleteByid(id);
     }
 
 }
