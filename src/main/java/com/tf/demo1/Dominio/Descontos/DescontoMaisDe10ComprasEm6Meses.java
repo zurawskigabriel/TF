@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.tf.demo1.Dominio.IRepOrcamentos;
 import com.tf.demo1.Dominio.ItemPedido;
-import com.tf.demo1.Dominio.Orcamento;
 
 @Component
 public class DescontoMaisDe10ComprasEm6Meses implements IDesconto {
