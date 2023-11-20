@@ -1,4 +1,4 @@
-package com.tf.demo1.Aplicacao;
+package com.tf.demo1.Aplicacao.Relatorio;
 
 public class GerarRelatorio {
 

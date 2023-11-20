@@ -51,6 +51,10 @@ public class ServicoVendas {
 		return orcamentosRepository.findAll();
 	}
 
+	public Orcamento consultaOrcamento(Long id) {
+		return orcamentosRepository.findByid(id);
+	}
+
 	// TODO: Concertar o erro de primary key violation
 	public void salvarOrcamento(Orcamento orcamento) {
 		// orcamentosRepository.save(orcamento);
