@@ -2,7 +2,11 @@ package com.tf.demo1.Interface;
 
 import java.util.List;
 
+import com.tf.demo1.Aplicacao.EfetivarOrcamento;
 import com.tf.demo1.Aplicacao.ListarTodosProdutos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
 import com.tf.demo1.Aplicacao.ServicoConsultaOrcamento;
@@ -20,15 +24,17 @@ import org.springframework.web.bind.annotation.*;
 public class Controller { 
 	@Autowired
 	ProdutosDisponiveis produtosDisponiveis;
+
 	@Autowired
 	SolicitarOrcamento solicitarOrcamento;
+
 	@Autowired
 	ListarTodosProdutos listarTodosProdutos;
 	@Autowired
 	ServicoConsultaOrcamento servicoConsultaOrcamento;
 
-//	@Autowired
-//	EfetivarOrcamento efetivarOrcamento;
+	@Autowired
+	EfetivarOrcamento efetivarOrcamento;
 
 	@GetMapping("/produtos-disponiveis")
     @CrossOrigin(origins = "*")
@@ -42,11 +48,17 @@ public class Controller {
 		return solicitarOrcamento.solicitar(nomeCliente, itemPedido);
 	}
 
-//	@GetMapping("/efetivar-orcamento")
-//    @CrossOrigin(origins = "*")
-//	public boolean efetivarOrcamento(@RequestParam int idOrcamento) {
-//		return efetivarOrcamento.Efetivar(idOrcamento);
-//	}
+	@GetMapping("/efetivar-orcamento")
+    @CrossOrigin(origins = "*")
+	public ResponseEntity<?> efetivarOrcamento(@RequestParam int idOrcamento) {
+		boolean resposta = efetivarOrcamento.efetivar((long) idOrcamento);
+
+		if (resposta) {
+			return ResponseEntity.ok().body("Orçamento efetivado com sucesso.");
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	///// Endpoints de Testes

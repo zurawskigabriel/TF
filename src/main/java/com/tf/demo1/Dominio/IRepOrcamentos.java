@@ -7,6 +7,5 @@ public interface IRepOrcamentos {
     List<Orcamento> findBynomeCliente(String nomeCliente);
     List<Orcamento> findAll();
     Orcamento save(Orcamento orcamento);
-    Orcamento findTopByOrderByIdDesc();
     void deleteByid(Long id);
 }

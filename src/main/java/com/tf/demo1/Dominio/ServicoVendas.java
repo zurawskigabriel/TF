@@ -1,16 +1,15 @@
 package com.tf.demo1.Dominio;
 
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.springframework.transaction.annotation.Transactional;
-
-@Component
+@Service
 public class ServicoVendas {
-	private IRepOrcamentos orcamentosRepository;
-	private IRepItemEstoque estoqueRepository;
+	private final IRepOrcamentos orcamentosRepository;
+	private final IRepItemEstoque estoqueRepository;
 
 	@Autowired
 	public ServicoVendas(IRepOrcamentos orcamentosRepository, IRepItemEstoque estoqueRepository) {
@@ -18,41 +17,33 @@ public class ServicoVendas {
 		this.estoqueRepository = estoqueRepository;
 	}
 
-	public boolean efetivarVenda(int nOrcamento){
-		Orcamento orcamentoEfetivado = orcamentosRepository.findByid((long) nOrcamento);
+	@Transactional
+	public boolean efetivarVenda(Long nOrcamento){
+		Orcamento orcamento = orcamentosRepository.findByid(nOrcamento);
 
-		//Verifica se o orçamento existe
-		if (orcamentoEfetivado == null){
-			return false;
+		if (orcamento == null) {
+			throw new IllegalArgumentException("Orçamento não encontrado");
+		} else if (orcamento.isEfetivado()) {
+			throw new IllegalArgumentException("Orçamento já efetivado");
 		}
 
-		// Verifica se o orçamento já foi efetivado
-		List<ItemPedido>itensOrcamento = orcamentoEfetivado.getItens();
-		for (ItemPedido i: itensOrcamento){
-			if (estoqueRepository.findByid(i.getCodProduto()) != null){
-				ItemDeEstoque produtoAtual = estoqueRepository.findByid(i.getCodProduto());
-				if (produtoAtual.getQuantidadeAtual() < i.getQuantidade()){
-					return false;
-				}
+		List<ItemPedido> itensOrcamento = orcamento.getItens();
+		for (ItemPedido item : itensOrcamento){
+			ItemDeEstoque produtoAtual = estoqueRepository.findByCodProduto(item.getCodProduto());
+			if (produtoAtual == null || produtoAtual.getQuantidadeAtual() < item.getQuantidade()){
+				throw new IllegalStateException("Estoque insuficiente para o produto: " + item.getCodProduto());
 			}
 		}
 
-		//Baixa no estoque
-		for (ItemPedido i: itensOrcamento){
-			ItemDeEstoque itemEstoque = estoqueRepository.findByid(i.getCodProduto());
-			itemEstoque.setQuantidadeAtual(itemEstoque.getQuantidadeAtual() - i.getQuantidade());
-			
-			//Salva as alterações no banco de dados
+		for (ItemPedido item : itensOrcamento){
+			ItemDeEstoque itemEstoque = estoqueRepository.findByCodProduto(item.getCodProduto());
+			itemEstoque.setQuantidadeAtual(itemEstoque.getQuantidadeAtual() - item.getQuantidade());
 			estoqueRepository.save(itemEstoque);
 		}
 
-		// Efetiva o orçamento
-		orcamentoEfetivado.setEfetivado(true);
+		orcamento.setEfetivado(true);
+		salvarOrcamento(orcamento);
 
-		// Salva as alterações no banco de dados
-		orcamentosRepository.save(orcamentoEfetivado);
-
-		// Retorna true para indicar que a venda foi efetivada
 		return true;
 	}
 
@@ -76,35 +67,8 @@ public class ServicoVendas {
 		orcamentosRepository.save(orcamento);
 	}
 
-
-	/*
-	 * Retorna o próximo id disponível para item de estoque.
-	 */
-	@Transactional
-	public Long getNextItemPedidoId() {
-		// Busca o item com maior id...
-		ItemDeEstoque ultimoItem = estoqueRepository.findTopByOrderByIdDesc();
-
-		if (ultimoItem == null) { // Se não encontrou nenhum item, ele recebe o id 0...
-			return 0L;
-		} else { // Se encontrou o maior id, retorna maior + 1...
-			return ultimoItem.getId() + 1;
-		}
+	// TODO: Concertar o erro de primary key violation
+	public void salvarOrcamento(Orcamento orcamento) {
+		// orcamentosRepository.save(orcamento);
 	}
-
-	/*
-	 * Retorna o próximo id disponível para item de estoque.
-	 */
-	@Transactional
-	public Long getNextOrcamentoId() {
-		// Busca o item com maior id...
-		Orcamento ultimoItem = orcamentosRepository.findTopByOrderByIdDesc();
-
-		if (ultimoItem == null) { // Se não encontrou nenhum item, ele recebe o id 0...
-			return 0L;
-		} else { // Se encontrou o maior id, retorna maior + 1...
-			return ultimoItem.getId() + 1;
-		}
-	}
-
 }

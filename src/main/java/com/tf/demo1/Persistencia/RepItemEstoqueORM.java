@@ -9,7 +9,7 @@ import com.tf.demo1.Dominio.ItemDeEstoque;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepItemEstoque implements IRepItemEstoque {
+public class RepItemEstoqueORM implements IRepItemEstoque {
     @Autowired
     ItemEstoqueH2BD_ITF itemEstoqueH2BD;
 
@@ -24,13 +24,13 @@ public class RepItemEstoque implements IRepItemEstoque {
     }
 
     @Override
-    public ItemDeEstoque findTopByOrderByIdDesc() {
-        return itemEstoqueH2BD.findTopByOrderByIdDesc();
+    public ItemDeEstoque save(ItemDeEstoque item) {
+        return itemEstoqueH2BD.save(item);
     }
 
     @Override
-    public ItemDeEstoque save(ItemDeEstoque item) {
-        return itemEstoqueH2BD.save(item);
+    public ItemDeEstoque findByCodProduto(Long codProduto) {
+        return itemEstoqueH2BD.findByCodProduto(codProduto);
     }
 
 }
