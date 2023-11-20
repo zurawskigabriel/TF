@@ -2,7 +2,6 @@ package com.tf.demo1.Persistencia;
 
 import java.util.List;
 
-import com.tf.demo1.Dominio.ItemDeEstoque;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tf.demo1.Dominio.IRepOrcamentos;
@@ -20,6 +19,11 @@ public class RepOrcamentos implements IRepOrcamentos {
     }
 
     @Override
+    public List<Orcamento> findBynomeCliente(String nomeCliente) {
+        return orcamentoH2BD.findBynomeCliente(nomeCliente);
+    }
+
+    @Override
     public List<Orcamento> findAll() {
         return orcamentoH2BD.findAll();
     }
@@ -32,6 +36,11 @@ public class RepOrcamentos implements IRepOrcamentos {
     @Override
     public Orcamento findTopByOrderByIdDesc() {
         return orcamentoH2BD.findTopByOrderByIdDesc();
+    }
+
+    @Override
+    public void deleteByid(Long id){
+        orcamentoH2BD.deleteByid(id);
     }
 
 }

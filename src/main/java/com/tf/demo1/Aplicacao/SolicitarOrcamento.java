@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
-
+import com.tf.demo1.Dominio.Descontos.GerenciaDescontos;
+import com.tf.demo1.Dominio.Impostos.GerenciaImpostos;
 
 
 @Component
@@ -21,9 +20,9 @@ public class SolicitarOrcamento {
 	@Autowired
 	private ServicoVendas servicoVendas;
 	@Autowired
-	private CalculaImpostos calculaImpostos;
+	private GerenciaImpostos calculaImpostos;
 	@Autowired
-	private CalculaDescontos calculaDescontos;
+	private GerenciaDescontos calculaDescontos;
 
 	public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
 		Long idOrcamento = servicoVendas.getNextOrcamentoId();
@@ -43,7 +42,7 @@ public class SolicitarOrcamento {
 
 		Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
 
-        // Salva o orçamento no banco de dados
+        servicoVendas.armazenaOrcamento(orcamento);
 		return orcamento; 
 	}
 
