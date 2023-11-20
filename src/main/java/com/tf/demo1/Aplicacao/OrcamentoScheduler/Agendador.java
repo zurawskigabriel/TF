@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Agendador {
 
    
