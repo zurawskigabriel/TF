@@ -1,5 +1,6 @@
 package com.tf.demo1.Dominio;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,8 +23,10 @@ public class Orcamento {
     @Setter private double totalPagar;
     @Setter private boolean efetivado;
 
+    @Setter
+    @JsonManagedReference
     @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Setter private List<ItemPedido> itens;
+    private List<ItemPedido> itens;
 
     @Setter private String data;
 }

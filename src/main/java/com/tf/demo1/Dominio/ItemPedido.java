@@ -1,5 +1,6 @@
 package com.tf.demo1.Dominio;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,9 +19,11 @@ public class ItemPedido {
 	@Setter private int quantidade;
 	@Setter private double preco;
 
+	@Setter
 	@ManyToOne
 	@JoinColumn(name = "orcamento_id")
-	@Setter private Orcamento orcamento;
+	@JsonBackReference
+	private Orcamento orcamento;
 
 	/*
 	 * Construtor usado para o endpoint POST /loja/solicitar-orcamento
