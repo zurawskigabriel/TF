@@ -34,4 +34,9 @@ public class RepOrcamentos implements IRepOrcamentos {
         return orcamentoH2BD.findTopByOrderByIdDesc();
     }
 
+    @Override
+    public void deleteById(Long id){
+        orcamentoH2BD.deleteById(id);
+    }
+
 }
