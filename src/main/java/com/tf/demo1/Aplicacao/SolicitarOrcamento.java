@@ -1,7 +1,7 @@
 package com.tf.demo1.Aplicacao;
 
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
+import com.tf.demo1.Dominio.Descontos.GerenciaDescontos;
+import com.tf.demo1.Dominio.Impostos.GerenciaImpostos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
@@ -19,17 +19,17 @@ public class SolicitarOrcamento {
     private ServicoVendas servicoVendas;
 
     @Autowired
-    private CalculaImpostos calculaImpostos;
+    private GerenciaImpostos gerenciaImpostos;
 
     @Autowired
-    private CalculaDescontos calculaDescontos;
+    private GerenciaDescontos gerenciaDescontos;
 
     public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
         validarEntrada(nomeCliente, itemPedido);
 
         double custoPedido = calcularCustoPedido(itemPedido);
-        double impostoTotal = calculaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
-        double descontoTotal = calculaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
+        double impostoTotal = gerenciaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
+        double descontoTotal = gerenciaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
         String dataHoje = obterDataFormatada();
 
         double custoTotal = custoPedido + impostoTotal - descontoTotal;

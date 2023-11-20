@@ -19,6 +19,11 @@ public class RepOrcamentosORM implements IRepOrcamentos {
     }
 
     @Override
+    public List<Orcamento> findBynomeCliente(String nomeCliente) {
+        return orcamentoH2BD.findBynomeCliente(nomeCliente);
+    }
+
+    @Override
     public List<Orcamento> findAll() {
         return orcamentoH2BD.findAll();
     }
@@ -26,6 +31,11 @@ public class RepOrcamentosORM implements IRepOrcamentos {
     @Override
     public Orcamento save(Orcamento orcamento) {
         return orcamentoH2BD.save(orcamento);
+    }
+
+    @Override
+    public void deleteByid(Long id) {
+        orcamentoH2BD.deleteByid(id);
     }
 
 }

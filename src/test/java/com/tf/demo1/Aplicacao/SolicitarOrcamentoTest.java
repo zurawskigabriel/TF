@@ -1,7 +1,7 @@
 package com.tf.demo1.Aplicacao;
 
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
+import com.tf.demo1.Dominio.Descontos.GerenciaDescontos;
+import com.tf.demo1.Dominio.Impostos.GerenciaImpostos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
@@ -26,10 +26,10 @@ public class SolicitarOrcamentoTest {
     private ServicoVendas servicoVendas;
 
     @Mock
-    private CalculaImpostos calculaImpostos;
+    private GerenciaImpostos gerenciaImpostos;
 
     @Mock
-    private CalculaDescontos calculaDescontos;
+    private GerenciaDescontos gerenciaDescontos;
 
     @InjectMocks
     private SolicitarOrcamento solicitarOrcamento;
@@ -47,8 +47,8 @@ public class SolicitarOrcamentoTest {
         double impostoTotal = 2.5;
         double descontoTotal = 1.0;
 
-        given(calculaImpostos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(impostoTotal);
-        given(calculaDescontos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(descontoTotal);
+        given(gerenciaImpostos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(impostoTotal);
+        given(gerenciaDescontos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(descontoTotal);
 
         // When
         Orcamento orcamento = solicitarOrcamento.solicitar(nomeCliente, itensPedido);

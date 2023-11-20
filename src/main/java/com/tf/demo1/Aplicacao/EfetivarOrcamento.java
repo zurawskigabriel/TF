@@ -14,7 +14,7 @@ public class EfetivarOrcamento {
 	}
 
 	public boolean efetivar(Long idOrcamento) {
-		Orcamento orcamento = servicoVendas.consultaOrcamento(idOrcamento);
+		Orcamento orcamento = servicoVendas.consultaOrcamentosPorId(idOrcamento);
 		if (orcamento == null) {
 			throw new IllegalArgumentException("Orçamento não encontrado");
 		} else if (orcamento.isEfetivado()) {
