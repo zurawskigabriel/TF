@@ -1,50 +1,46 @@
 package com.tf.demo1.Aplicacao;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
+import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaImpostos;
-import com.tf.demo1.Dominio.DescontosImpostos.CalculaDescontos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @Component
 public class SolicitarOrcamento {
 
-	@Autowired
-	private ServicoVendas servicoVendas;
-	@Autowired
-	private CalculaImpostos calculaImpostos;
-	@Autowired
-	private CalculaDescontos calculaDescontos;
+    @Autowired
+    private ServicoVendas servicoVendas;
+    @Autowired
+    private CalculaImpostos calculaImpostos;
+    @Autowired
+    private CalculaDescontos calculaDescontos;
 
-	public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
-		Long idOrcamento = servicoVendas.getNextOrcamentoId();
-		double custoPedido = itemPedido.stream()
-									   .mapToDouble(item -> item.getPreco() * item.getQuantidade())
-									   .sum();
+    public Orcamento solicitar(String nomeCliente, List<ItemPedido> itemPedido) {
+        Long idOrcamento = servicoVendas.getNextOrcamentoId();
+        double custoPedido = itemPedido.stream().mapToDouble(item -> item.getPreco() * item.getQuantidade()).sum();
 
-		double impostoTotal = calculaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
-		double descontoTotal = calculaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
+        double impostoTotal = calculaImpostos.calcula(itemPedido, custoPedido, nomeCliente);
+        double descontoTotal = calculaDescontos.calcula(itemPedido, custoPedido, nomeCliente);
 
-		// Formatar a data de hoje no formato desejado
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String dataHoje = LocalDate.now().format(formatter);
+        // Formatar a data de hoje no formato desejado
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataHoje = LocalDate.now().format(formatter);
 
-		double custoTotal = custoPedido + impostoTotal - descontoTotal;
-		boolean efetivado = false;
+        double custoTotal = custoPedido + impostoTotal - descontoTotal;
+        boolean efetivado = false;
 
-		Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
+        Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
 
         // Salva o orçamento no banco de dados
-		return orcamento; 
-	}
+        return orcamento;
+    }
 
 }
