@@ -28,4 +28,9 @@ public class RepItemEstoqueORM implements IRepItemEstoque {
         return itemEstoqueH2BD.save(item);
     }
 
+    @Override
+    public ItemDeEstoque findByCodProduto(Long codProduto) {
+        return itemEstoqueH2BD.findByCodProduto(codProduto);
+    }
+
 }

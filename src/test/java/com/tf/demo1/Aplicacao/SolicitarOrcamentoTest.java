@@ -40,13 +40,12 @@ public class SolicitarOrcamentoTest {
         String nomeCliente = "John Appleseed";
 
         List<ItemPedido> itensPedido = new ArrayList<>();
-        itensPedido.add(new ItemPedido(1L, 100L, 2, 10.0));
-        itensPedido.add(new ItemPedido(2L, 101L, 1, 5.0));
+        itensPedido.add(new ItemPedido(100L, 2, 10.0));
+        itensPedido.add(new ItemPedido(101L, 1, 5.0));
 
         double custoPedido = 25.0;
         double impostoTotal = 2.5;
         double descontoTotal = 1.0;
-        Long idOrcamento = 1L;
 
         given(calculaImpostos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(impostoTotal);
         given(calculaDescontos.calcula(itensPedido, custoPedido, nomeCliente)).willReturn(descontoTotal);
