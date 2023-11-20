@@ -10,7 +10,9 @@ import java.time.temporal.ChronoUnit;
 
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.ServicoVendas;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VerificarValidadeOrcamento implements Runnable {
 
     List<Orcamento> orcamentos;
