@@ -5,6 +5,7 @@ import java.util.List;
 import com.tf.demo1.Aplicacao.ListarTodosProdutos;
 
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
+import com.tf.demo1.Aplicacao.ServicoConsultaOrcamento;
 import com.tf.demo1.Aplicacao.SolicitarOrcamento;
 import com.tf.demo1.Dominio.IRepOrcamentos;
 import com.tf.demo1.Dominio.ItemPedido;
@@ -23,6 +24,8 @@ public class Controller {
 	SolicitarOrcamento solicitarOrcamento;
 	@Autowired
 	ListarTodosProdutos listarTodosProdutos;
+	@Autowired
+	ServicoConsultaOrcamento servicoConsultaOrcamento;
 
 //	@Autowired
 //	EfetivarOrcamento efetivarOrcamento;
@@ -64,7 +67,7 @@ public class Controller {
 	@GetMapping("/orcamentos")
     @CrossOrigin(origins = "*")
 	public List<Orcamento> orcamentos() {
-		return repOrcamento.findAll();
+		return servicoConsultaOrcamento.consultaTodosOrcamentos();
 	}
 
 	/*
@@ -73,7 +76,16 @@ public class Controller {
 	@GetMapping("/orcamento-por-cliente")
     @CrossOrigin(origins = "*")
 	public List<Orcamento> orcamentoPorCliente(@RequestParam(value = "nomeCliente") String nomeCliente) {
-		return repOrcamento.findBynomeCliente(nomeCliente);
+		return servicoConsultaOrcamento.consultaOrcamentosPorCliente(nomeCliente);
+	}
+
+	/*
+	 * Este endpoint retorna um orcamento com o Id correspondente.
+	 */
+	@GetMapping("/orcamento-por-id")
+    @CrossOrigin(origins = "*")
+	public Orcamento orcamentoPorId(@RequestParam(value = "Id") long Id) {
+		return servicoConsultaOrcamento.consultaOrcamentosPorId(Id);
 	}
 
 	/*

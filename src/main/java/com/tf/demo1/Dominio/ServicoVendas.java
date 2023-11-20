@@ -60,6 +60,14 @@ public class ServicoVendas {
 		return orcamentosRepository.findAll();
 	}
 
+	public Orcamento consultaOrcamentosPorId(long id) {
+		return orcamentosRepository.findByid(id);
+	}
+
+	public List<Orcamento> consultaOrcamentosPorCliente(String nomeCliente) {
+		return orcamentosRepository.findBynomeCliente(nomeCliente);
+	}
+
 	public void apagaOrcamento(Long id){
 		orcamentosRepository.deleteByid(id);
 	}
