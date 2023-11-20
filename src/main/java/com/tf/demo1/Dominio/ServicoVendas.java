@@ -60,7 +60,7 @@ public class ServicoVendas {
 		return orcamentosRepository.findAll();
 	}
 
-	public void armazenaOrcamento(Orcamento orcamento) {
+	public void salvarOrcamento(Orcamento orcamento) {
 		orcamentosRepository.save(orcamento);
 	}
 
