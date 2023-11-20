@@ -42,7 +42,7 @@ public class SolicitarOrcamento {
 
 		Orcamento orcamento = new Orcamento(idOrcamento, nomeCliente, custoPedido, impostoTotal, dataHoje, descontoTotal, custoTotal, efetivado, itemPedido);
 
-        // Salva o orçamento no banco de dados
+        servicoVendas.armazenaOrcamento(orcamento);
 		return orcamento; 
 	}
 
