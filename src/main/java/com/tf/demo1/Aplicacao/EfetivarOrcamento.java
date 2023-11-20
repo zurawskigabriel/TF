@@ -1,26 +1,29 @@
 package com.tf.demo1.Aplicacao;
-/*package com.tf.demo1.Aplicação;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.tf.demo1.Dominio.Orcamento;
+import com.tf.demo1.Dominio.ServicoVendas;
+import org.springframework.stereotype.Service;
 
-import com.tf.demo1.Domínio.Orcamento;
-import com.tf.demo1.Domínio.ServicoEstoque;
-import com.tf.demo1.Domínio.ServicoVendas;
-
-@Component
+@Service
 public class EfetivarOrcamento {
-	@Autowired
-	public ServicoVendas servicoVendas;
-	private int idOrcamento;
 
-	public boolean Efetivar(int idOrcamento) {
-		servicoVendas.consultaOrcamentos().stream()
-										  .filter(orcamento -> orcamento.getId() == idOrcamento)
-						   				  .findFirst()
-						   				  .ifPresent(orcamento -> orcamento.setEfetivado(true));
+	private final ServicoVendas servicoVendas;
 
-		return true;
+	public EfetivarOrcamento(ServicoVendas servicoVendas) {
+		this.servicoVendas = servicoVendas;
 	}
 
-}*/
+	public boolean efetivar(Long idOrcamento) {
+		Orcamento orcamento = servicoVendas.consultaOrcamento(idOrcamento);
+		if (orcamento == null) {
+			throw new IllegalArgumentException("Orçamento não encontrado");
+		} else if (orcamento.isEfetivado()) {
+			throw new IllegalArgumentException("Orçamento já efetivado");
+		} else {
+			orcamento.setEfetivado(true);
+			servicoVendas.salvarOrcamento(orcamento);
+
+			return true;
+		}
+	}
+}
