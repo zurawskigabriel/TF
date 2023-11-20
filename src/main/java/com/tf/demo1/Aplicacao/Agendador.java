@@ -1,3 +1,5 @@
+package com.tf.demo1.Aplicacao;
+
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,7 +22,7 @@ public class Agendador {
         this.orcamentos = orcamentos;
     }
 
-    public static void agendarVerificacaoOrcamento() {
+    public void agendarVerificacaoOrcamento() {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
         VerificarValidadeOrcamento tarefa = new VerificarValidadeOrcamento(orcamentos, servicoVendas);
