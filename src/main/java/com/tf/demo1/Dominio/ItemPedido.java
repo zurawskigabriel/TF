@@ -15,12 +15,12 @@ public class ItemPedido {
 	@JoinColumn(name = "orcamento_id") // Cannot resolve column 'orcamento_id'
 	private Orcamento orcamento; // This is the reference back to Orcamento
 
-	public ItemPedido(Long id, Long codProduto, int quantidade, double preco, Orcamento orcamento) {
+	public ItemPedido(Long id, Long codProduto, int quantidade, double preco) {
 		this.id = id;
 		this.codProduto = codProduto;
 		this.quantidade = quantidade;
 		this.preco = preco;
-		this.orcamento = orcamento;
+		this.orcamento = null;
 	}
 
 	protected ItemPedido() {}
