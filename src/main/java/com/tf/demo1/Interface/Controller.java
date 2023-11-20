@@ -3,20 +3,18 @@ package com.tf.demo1.Interface;
 import java.util.List;
 
 import com.tf.demo1.Aplicacao.ListarTodosProdutos;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
 import com.tf.demo1.Aplicacao.SolicitarOrcamento;
-import com.tf.demo1.Dominio.IRepItemEstoque;
 import com.tf.demo1.Dominio.IRepOrcamentos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.Produto;
 import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
-import com.tf.demo1.Persistencia.RepOrcamentos;
 
-import jakarta.websocket.server.PathParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequestMapping("/loja")
@@ -28,7 +26,7 @@ public class Controller {
 	@Autowired
 	ListarTodosProdutos listarTodosProdutos;
 	@Autowired
-	IRepOrcamentos repOrcamento;
+	OrcamentoH2BD_ITF repOrcamento;
 
 //	@Autowired
 //	EfetivarOrcamento efetivarOrcamento;
@@ -45,9 +43,9 @@ public class Controller {
 		return solicitarOrcamento.solicitar(nomeCliente, itemPedido);
 	}
 
-	@PostMapping("/orcamento-por-cliente")
+	@GetMapping("/orcamento-por-cliente")
     @CrossOrigin(origins = "*")
-	public List<Orcamento> orcamentoPorCliente(@RequestParam final String nomeCliente) {
+	public List<Orcamento> orcamentoPorCliente(@RequestParam(value = "nomeCliente") String nomeCliente) {
 		return repOrcamento.findBynomeCliente(nomeCliente);
 	}
 

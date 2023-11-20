@@ -1,6 +1,7 @@
 package com.tf.demo1.Persistencia;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 
 import com.tf.demo1.Dominio.Orcamento;
 
