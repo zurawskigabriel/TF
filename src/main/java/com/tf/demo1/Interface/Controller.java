@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tf.demo1.Aplicacao.ProdutosDisponiveis;
 import com.tf.demo1.Aplicacao.SolicitarOrcamento;
+import com.tf.demo1.Dominio.IRepItemEstoque;
+import com.tf.demo1.Dominio.IRepOrcamentos;
 import com.tf.demo1.Dominio.ItemPedido;
 import com.tf.demo1.Dominio.Orcamento;
 import com.tf.demo1.Dominio.Produto;
+import com.tf.demo1.Persistencia.OrcamentoH2BD_ITF;
+import com.tf.demo1.Persistencia.RepOrcamentos;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/loja")
@@ -21,6 +27,8 @@ public class Controller {
 	SolicitarOrcamento solicitarOrcamento;
 	@Autowired
 	ListarTodosProdutos listarTodosProdutos;
+	@Autowired
+	IRepOrcamentos repOrcamento;
 
 //	@Autowired
 //	EfetivarOrcamento efetivarOrcamento;
@@ -35,6 +43,12 @@ public class Controller {
     @CrossOrigin(origins = "*")
 	public Orcamento solicitarOrcamento(@RequestParam final String nomeCliente, @RequestBody final List<ItemPedido> itemPedido) {
 		return solicitarOrcamento.solicitar(nomeCliente, itemPedido);
+	}
+
+	@PostMapping("/orcamento-por-cliente")
+    @CrossOrigin(origins = "*")
+	public List<Orcamento> orcamentoPorCliente(@RequestParam final String nomeCliente) {
+		return repOrcamento.findBynomeCliente(nomeCliente);
 	}
 
 //	@GetMapping("/efetivar-orcamento")

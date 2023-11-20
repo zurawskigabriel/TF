@@ -20,6 +20,11 @@ public class RepOrcamentos implements IRepOrcamentos {
     }
 
     @Override
+    public List<Orcamento> findBynomeCliente(String nomeCliente) {
+        return orcamentoH2BD.findBynomeCliente(nomeCliente);
+    }
+
+    @Override
     public List<Orcamento> findAll() {
         return orcamentoH2BD.findAll();
     }
