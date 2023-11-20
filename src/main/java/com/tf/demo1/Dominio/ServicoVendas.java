@@ -60,6 +60,10 @@ public class ServicoVendas {
 		return orcamentosRepository.findAll();
 	}
 
+	public void apagaOrcamento(Long id){
+		orcamentosRepository.deleteById(id);
+	}
+
 	public void armazenaOrcamento(Orcamento orcamento) {
 		orcamentosRepository.save(orcamento);
 	}
