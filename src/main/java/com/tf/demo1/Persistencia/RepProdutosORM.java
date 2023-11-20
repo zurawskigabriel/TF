@@ -9,7 +9,7 @@ import com.tf.demo1.Dominio.Produto;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepProdutos implements IRepProduto{
+public class RepProdutosORM implements IRepProduto{
     @Autowired
     ProdutoH2BD_ITF produtoH2BD;
 

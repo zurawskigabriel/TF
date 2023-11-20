@@ -9,7 +9,7 @@ import com.tf.demo1.Dominio.ItemDeEstoque;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepItemEstoque implements IRepItemEstoque {
+public class RepItemEstoqueORM implements IRepItemEstoque {
     @Autowired
     ItemEstoqueH2BD_ITF itemEstoqueH2BD;
 
